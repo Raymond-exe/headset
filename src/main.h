@@ -8,6 +8,9 @@
 
 #include "TM1637.h"
 
+// Un-comment to replace status codes with a counter
+// #define BENCHMARKING_MODE
+
 // active MPU6050 address is 1101001, inactive is 1101000
 #define ADDRESS 0x69 // nice
 #define PIN_SCL 13 // SCL pin for MPU6050

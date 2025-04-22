@@ -129,6 +129,10 @@ int countDeviation(float* values) {
   return deviationCount;
 }
 
+#ifdef BENCHMARKING_MODE
+unsigned char packetCounter = 0;
+#endif
+
 void sendPacket(int pitch, int roll, int yaw) {
   if (yawOffset == -999) {
     yawOffset = yaw;
@@ -144,6 +148,11 @@ void sendPacket(int pitch, int roll, int yaw) {
   } else {
     // print status OK if necessary
   }
+
+  #ifdef BENCHMARKING_MODE
+    status = packetCounter;
+    packetCounter = (packetCounter + 1) % 128;
+  #endif
 
   if (yaw < 0) status = status | 0x80; // use MSB of status byte as negative bit for yaw
 
